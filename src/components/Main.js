@@ -26,17 +26,18 @@ function Main() {
   }, []);
 
   return (
-    <main className="bg-light-mode-text w-5/6 min-h-screen mt-16 mx-auto ">
+    <main className=" w-5/6 min-h-screen mt-16 mx-auto ">
       <Search />
       {/* <Filter /> */}
-      <div className="cards flex flex-wrap gap-4 md:gap-10 bg-red-400 justify-center md:justify-between items-center ">
+      <div className="cards grid md:grid-cols-3 grid-cols-2 lg:grid-cols-4 gap-y-6 lg:gap-10 items-center ">
+        {/* <div className="cards flex flex-wrap justify-between gap-8 lg:gap-10 items-center "> */}
         {countries ? (
           countries.map((country, i) => {
             return (
               <Link key={i + 1} to={country.name.common.toLowerCase()}>
-                <div className="card bg-red-800">
-                  <div className="flag w-[264px] min-h-[159px]">
-                    <img src={country.flags.png} alt={country.name.common} style={{ width: "auto", height: "120%" }} />
+                <div className="card bg-white shadow-md rounded-lg">
+                  <div className="flag min-w-[264px] h-[159px]">
+                    <img src={country.flags.png} alt={country.name.common} className="h-full w-full" />
                   </div>
                   <div className="descirption px-6 py-7">
                     <h2 className="text-xl font-semibold mb-3">{country.name.common}</h2>

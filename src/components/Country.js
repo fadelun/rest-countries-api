@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
+import { useParams } from "react-router-dom";
 
 const initialState = {
   loading: true,
@@ -27,27 +28,12 @@ const reducer = (state, action) => {
 
 function Country() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  //   const [dataDetails, setDataDetails] = useState([]);
-  //   const [name, setName] = useState("");
-  //   const [languages, setLanguages] = useState([]);
-  //   const [error, setError] = useState(true);
 
-  //   const getData = () => {
-  //     axios
-  //       .get("https://restcountries.com/v3.1/name/belgium")
-  //       .then((response) => {
-  //         dispatch({ type: "SUCCES", payload: response.data });
-  //       })
-
-  //       .catch((err) => {
-  //         dispatch({ type: "ERROR" });
-  //       });
-  //   };
-
+  const { name } = useParams();
   useEffect(() => {
     // getData();
     axios
-      .get("https://restcountries.com/v3.1/name/belgium")
+      .get(`https://restcountries.com/v3.1/name/${name}`)
       .then((response) => {
         dispatch({ type: "SUCCES", payload: response.data });
       })
@@ -59,7 +45,8 @@ function Country() {
     // state.post.map((item) => {
     //   console.log(item.name.common);
     // });
-    console.log(state);
+
+    console.log(state.post);
   }, []);
 
   return (
@@ -69,17 +56,18 @@ function Country() {
         : state.post.map((item) => (
             <div className="w-3/4 mx-auto border ">
               <img src={item.flags.png} alt={item.name.common} />
-              <h1 className="text-2xl text-bold">{item.name.common}</h1>
+              <h1 className="text-2xl text-bold">{name}</h1>
               <p>population: {item.population}</p>
               <p>region: {item.region}</p>
               <p>subregion: {item.subregion}</p>
               <p>capital: {item.capital}</p>
               <p>top level domain: {item.tld.map((e) => e)}</p>
-              <p>currencies: </p>
-              <p>border:{item.borders.map((e) => `${e} `)} </p>
+              <p>currencies: {Object.values(item.currencies)[0].name}</p>
+              <p>border:{item.borders ? item.borders.map((e) => `${e} `) : "Nothing"} </p>
             </div>
           ))}
       {state.error ? state.error : null}
+
       {/* 
         -flags.png
         -name.common
