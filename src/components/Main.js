@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Search } from "./Search";
+import { Filter } from "./Filter";
 
 function Main() {
   const [countries, setCountries] = useState([]);
@@ -16,9 +17,6 @@ function Main() {
 
         setCountries(datas);
         setLoad(countries && true);
-        countries.map((item) => {
-          console.log(item.name);
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -26,18 +24,18 @@ function Main() {
   }, []);
 
   return (
-    <main className=" w-5/6 min-h-screen mt-16 mx-auto ">
+    <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto ">
       <Search />
-      {/* <Filter /> */}
-      <div className="cards grid md:grid-cols-3 grid-cols-2 lg:grid-cols-4 gap-y-6 lg:gap-10 items-center ">
-        {/* <div className="cards flex flex-wrap justify-between gap-8 lg:gap-10 items-center "> */}
+      <Filter />
+      <div className="cards mt-10 grid grid-rows-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(4,_minmax(264px,_1fr))] gap-5 lg:gap-8 xl:gap-10 items-center ">
         {countries ? (
           countries.map((country, i) => {
             return (
               <Link key={i + 1} to={country.name.common.toLowerCase()}>
-                <div className="card bg-white shadow-md rounded-lg">
-                  <div className="flag min-w-[264px] h-[159px]">
-                    <img src={country.flags.png} alt={country.name.common} className="h-full w-full" />
+                <div className="card bg-white shadow-md rounded-lg ">
+                  {/* <div className="flag min-w-[264px] h-[159px]"> */}
+                  <div className="image-container overflow-hidden rounded-t-lg  h-[166px] ">
+                    <img src={country.flags.png} alt={country.name.common} className=" w-full object-cover lg:min-w-[264px] h-full" />
                   </div>
                   <div className="descirption px-6 py-7">
                     <h2 className="text-xl font-semibold mb-3">{country.name.common}</h2>

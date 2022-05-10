@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Filter = () => {
-  return (
-    <>
-      <div className="filter-by-region">
-        <li>Africa</li>
-        <li>America</li>
-        <li>Africa</li>
-        <li>Africa</li>
-        <li>Africa</li>
-      </div>
-    </>
+  const regions = ["Africa", "America", "Asia", "Europe", "Ocenia"];
+
+  regions(
+    <details className="region-list">
+      <summary>Filter by Region</summary>
+      {regions &&
+        regions.map((item) => {
+          <Link to=":continent">{item}</Link>;
+        })}
+    </details>
   );
 };
