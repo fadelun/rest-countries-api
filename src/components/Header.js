@@ -3,7 +3,7 @@ import IconMoon from "../images/moon-outline.svg";
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0">
+    <header className="fixed inset-x-0 top-0 z-50">
       <nav className="shadow-md bg-white py-4">
         <div className="w-5/6 mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-extrabold ">Where in the world?</h1>

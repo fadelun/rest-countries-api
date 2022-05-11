@@ -10,6 +10,6 @@ body {
 
 @layer components {
   #search-input {
-    @apply bg-slate-50 shadow rounded p-4 w-2/5 flex py-3 px-5;
+    @apply bg-slate-50 shadow rounded  p-4 lg:p-5 w-full lg:w-2/5 flex py-3 px-5;
   }
 }

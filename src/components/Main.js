@@ -25,8 +25,10 @@ function Main() {
 
   return (
     <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto ">
-      <Search />
-      <Filter />
+      <div className="features  flex  lg:justify-between flex-wrap lg:flex-nowrap">
+        <Search />
+        <Filter />
+      </div>
       <div className="cards mt-10 grid grid-rows-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(4,_minmax(264px,_1fr))] gap-5 lg:gap-8 xl:gap-10 items-center ">
         {countries ? (
           countries.map((country, i) => {
