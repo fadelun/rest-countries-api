@@ -5,9 +5,11 @@
 
 # testing
 /coverage
+/src/components/Country02.js
 
 # production
 /build
+
 
 # misc
 .DS_Store

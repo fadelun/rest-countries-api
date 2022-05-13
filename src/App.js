@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import NotFound from "./components/NotFound";
 import Country from "./components/Country";
+// import Country from "./components/Country02";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/:name" element={<Country />} />
+        <Route path="/:paramsName" element={<Country />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
