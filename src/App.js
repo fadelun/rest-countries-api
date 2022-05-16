@@ -7,7 +7,7 @@ import Country from "./components/Country";
 
 function App() {
   return (
-    <div className="App bg-gray-200 ">
+    <div className="App bg-white ">
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />

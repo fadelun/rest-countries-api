@@ -9,7 +9,16 @@ body {
 }
 
 @layer components {
-  #search-input {
-    @apply bg-slate-50 shadow rounded  p-4 lg:p-5 w-full lg:w-2/5 flex py-3 px-5;
+  /* #search-input {
+    @apply ;
+  } */
+  #btn-to-back {
+    @apply flex justify-between px-10 py-2 rounded-md  bg-very-light-gray;
+    box-shadow: 0 0 4px #0006;
+  }
+
+  .border-countries-list {
+    @apply px-6 py-1 bg-very-light-gray rounded;
+    box-shadow: 0 0 4px #0006;
   }
 }

@@ -14,12 +14,12 @@ export const Filter = () => {
   // }, []);
   return (
     <>
-      <details onClick={(e) => detailsFunc(e)} id="region-list" className="p-4 mt-2 lg:mt-0 lg:p-5 w-2/5 lg:w-1/6 bg-slate-50 shadow rounded  relative">
+      <details onClick={(e) => detailsFunc(e)} id="region-list" className="p-4 mt-2 lg:mt-0 lg:p-5 w-2/5 lg:w-1/6 bg-very-light-gray hover:cursor-pointer shadow rounded  relative">
         <summary className="list-none flex justify-between">
           <span>Filter by Region</span> <img src={IconArrow} alt="go-down-icon" width={18} />
         </summary>
 
-        <ul className="absolute top-full inset-x-0 bg-slate-50 py-4 px-6 mt-2  shadow rounded">
+        <ul className="absolute top-full inset-x-0 bg-very-light-gray hover:cursor-pointer py-4 px-6 mt-2  shadow rounded">
           {regions &&
             regions.map((item, key) => {
               return (
