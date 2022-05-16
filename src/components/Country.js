@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import IconArrowBack from "../images/arrow-back-outline.svg";
 
 const initialState = {
@@ -30,31 +30,8 @@ const reducer = (state, action) => {
 
 function Country() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const navigate = useNavigate(-1);
   const { paramsName } = useParams();
-
-  // const getNativeName = () => {
-  //   if (state.post) {
-  //     state.post.map((item) => {
-  //       const allNativeNames = Object.values(item.name.nativeName);
-  //       const getNative = Object.values(allNativeNames[allNativeNames.length - 1]);
-
-  //       console.log(allNativeNames);
-  //       console.log(getNative[getNative.length - 1]);
-
-  //       // console.log(item);
-  //     });
-  //   } else {
-  //     console.log("LOL");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getDataAPI();
-
-  //   console.log("get API succes");
-  //   console.log(state.post);
-  // }, []);
 
   useEffect(() => {
     axios
@@ -66,22 +43,14 @@ function Country() {
           payload: response.data,
         });
       })
-      // .then((state) => {
-      //   console.log(state.post);
-      // })
 
       .catch((err) => {
         dispatch({ type: "ERROR" });
       });
   }, []);
-
-  // useEffect(() => {
-  //   getNativeName();
-  // }, []);
-
   return (
-    <main className=" w-4/5 mx-auto pt-24 text-base">
-      <button className="flex justify-between px-10 py-2 rounded-md shadow-xl bg-slate-50">
+    <main className=" w-4/5 mx-auto pt-24 text-base relative min-h-screen">
+      <button id="btn-to-back" onClick={() => navigate()}>
         <img src={IconArrowBack} alt="go-back-icon" width={18} />
         <span>back</span>
       </button>
@@ -91,24 +60,28 @@ function Country() {
             console.log(name);
             console.log(region);
           })} */}
-      <div className="container mt-4 bg-slate-600 min-h-full">
+      <div className="container mt-14 mx-auto ">
         {state.loading ? (
-          <h1 className="text-2xl">Loading...</h1>
+          <div classsName="bg-slate-300 absolute inset-0">
+            <h1 className="text-3xl font-bold">Loading...</h1>
+          </div>
         ) : (
           state.post.map(({ name, flags, population, region, subregion, capital, tld, currencies, borders, languages }) => (
-            <div id="country" className="flex ">
-              <div className="image-container w-1/2">
+            <div id="country" className="flex justify-between h-1/4">
+              <div className="image-container w-2/5">
                 <img src={flags.png} alt={name.common} className="w-full object-cover h-full" />
               </div>
-              <div className="description w-1/2 bg-green-200 pl-16 py-10 flex flex-col">
-                <h1 className="text-2xl text-bold border-b-2 border-black capitalize font-extrabold ">{paramsName}</h1>
+              <div className="description w-1/2  pl-16 py-10 flex flex-col">
+                <h1 className="text-3xl text-bold  capitalize font-extrabold ">{paramsName}</h1>
 
-                <article className="list-info mt-4 mb-10 h-44 border-b-2 capitalize border-black flex flex-col flex-wrap">
+                <article className="list-info mt-6 mb-16 h-44 capitalize  flex flex-col flex-wrap">
                   <p className="mb-2 font-semibold">
+                    {/* // mengambil nativeName didalam properti name */}
                     native Name : <span className="font-normal">{Object.values(name.nativeName)[Object.values(name.nativeName).length - 1].common}</span>
                   </p>
                   <p className="mb-2 font-semibold">
-                    population: <span className="font-normal">{population}</span>{" "}
+                    {/* population: <span className="font-normal">{population}</span>  */}
+                    population: <span className="font-normal">{population.toString().replace(/\B(?<!,\d*)(?=(\d{3})+(?!\d))/g, ",")}</span>{" "}
                   </p>
                   <p className="mb-2 font-semibold">
                     region: <span className="font-normal">{region}</span>
@@ -126,12 +99,13 @@ function Country() {
                     currencies: <span className="font-normal">{Object.values(currencies)[0].name}</span>{" "}
                   </p>
                   <p className="font-semibold">
-                    Languages :<span className="font-normal">{Object.values(languages).reverse()}</span>
-                    {/* Languages :<span className="font-normal">{Object.values(languages)[Object.values(languages).length - 1] ? Object.values(languages).reverse() + " ," : Object.values(languages)[Object.values(languages).length - 1]}</span> */}
+                    Languages :<span className="font-normal ">{Object.values(languages).reverse().join(", ")}</span>
                   </p>
                 </article>
-                <article className="border-countries">
-                  <p>border:{borders ? borders.map((e) => `${e} `) : "Nothing"} </p>
+                <article className="border-countries capitalize">
+                  <p className="font-semibold">
+                    {"  "}border countries: {borders ? borders.map((e) => <span className="border-countries-list mr-2 font-normal">{e}</span>) : <span className="font-normal text-xl ">Nothing</span>}{" "}
+                  </p>
                 </article>
               </div>
             </div>
