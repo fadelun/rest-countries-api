@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useReducer } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import IconArrowBack from "../images/arrow-back-outline.svg";
+import FormatNumber from "../utils/FormatNumber";
 
 const initialState = {
   loading: true,
@@ -81,7 +82,7 @@ function Country() {
                   </p>
                   <p className="mb-2 font-semibold">
                     {/* population: <span className="font-normal">{population}</span>  */}
-                    population: <span className="font-normal">{population.toString().replace(/\B(?<!,\d*)(?=(\d{3})+(?!\d))/g, ",")}</span>{" "}
+                    population: <span className="font-normal">{FormatNumber(population)}</span>{" "}
                   </p>
                   <p className="mb-2 font-semibold">
                     region: <span className="font-normal">{region}</span>

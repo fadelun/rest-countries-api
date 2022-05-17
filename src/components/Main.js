@@ -3,10 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Search } from "./Search";
 import { Filter } from "./Filter";
+import FormatNumber from "../utils/FormatNumber";
 
 function Main() {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchCountry, setSearchCountry] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  const searchHandler = (searchCountry) => {
+    console.log(searchCountry);
+  };
 
   useEffect(() => {
     axios
@@ -26,7 +33,7 @@ function Main() {
   return (
     <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative bg-very-light-gray">
       <div className="features  flex  lg:justify-between flex-wrap lg:flex-nowrap">
-        <Search />
+        <Search searchCountry={searchCountry} searchHandler={searchHandler} />
         <Filter />
       </div>
       <div className="cards mt-10 grid grid-rows-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(4,_minmax(264px,_1fr))] gap-5 lg:gap-8 xl:gap-10 items-center ">
@@ -47,7 +54,7 @@ function Main() {
                     <h2 className="text-xl  mb-3">{country.name.common}</h2>
 
                     <p className="mb-1">
-                      Population:<span className="font-normal">{country.population}</span>{" "}
+                      Population:<span className="font-normal">{FormatNumber(country.population)}</span>{" "}
                     </p>
 
                     <p className="mb-1">
