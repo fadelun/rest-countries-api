@@ -10,6 +10,7 @@ module.exports = {
       "light-input": " hsl(0, 0%, 52%)",
       "very-light-gray": "hsl(0, 0%, 98%)", // <--- background
       white: "hsl(0, 0%, 100%)",
+      transparent: "transparent",
     },
     extend: {},
   },
