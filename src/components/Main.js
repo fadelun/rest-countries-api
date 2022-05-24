@@ -88,7 +88,6 @@ function Main() {
         console.log(err.message);
       });
   }, []);
-
   return (
     <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative ">
       <div className="features  flex  lg:justify-between flex-wrap lg:flex-nowrap">
@@ -105,7 +104,7 @@ function Main() {
           result &&
           result.map((country, i) => {
             return (
-              <Link key={i + 1} to={country.name.common.toLowerCase()}>
+             <Link key={i + 1} to={country.name.common.toLowerCase()}>
                 <div className="card bg-white shadow-md rounded-lg ">
                   <div className="image-container overflow-hidden rounded-t-lg  h-[166px] ">
                     <img src={country.flags.png} alt={country.name.common} className=" w-full object-cover lg:min-w-[264px] h-full" />
@@ -129,7 +128,7 @@ function Main() {
               </Link>
             );
           })
-        )}
+
       </div>
     </main>
   );

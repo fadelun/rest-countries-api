@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import IconArrow from "../images/chevron-down-outline.svg";
 
-export const Filter = () => {
+export const Filter = ({ regionName, setRegionName, clickHandler }) => {
   const regions = ["Africa", "America", "Asia", "Europe", "Ocenia"];
-  const [continentName, setContinentName] = useState("");
 
-  const clickHandler = (e) => {
-    console.log(e.target.firstChildElement);
+  const getRegion = (item) => {
+    // melemparkan variable regions ke main.js
+    clickHandler(item, regions);
   };
 
   return (
@@ -22,7 +22,7 @@ export const Filter = () => {
             regions.map((item, key) => {
               return (
                 <li key={key + 1} className="mb-4">
-                  <button onClick={(e) => clickHandler(e)} to="/">
+                  <button className="w-full text-left" onClick={() => getRegion(`${item}`)}>
                     {item}
                   </button>
                 </li>
