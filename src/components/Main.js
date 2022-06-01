@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Search } from "./Search";
-import { Filter } from "./Filter";
 import FormatNumber from "../utils/FormatNumber";
+import SortHandler from "../utils/SortHandler";
+import { Features } from "./Features";
+// import { AllCountries } from "./AllCountries";
 
 function Main() {
   const [countries, setCountries] = useState([]);
@@ -30,40 +31,24 @@ function Main() {
 
   // function untuk filter
   const regionHandler = (item, regions) => {
+    // setRegionName((prevRegionName) => item);
     setRegionName(item);
-    console.log(regions);
 
-    if (regionName !== "") {
-      const findedRegions = regions.find((item) => {
-        return item === regionName;
-      });
-
-      const filteredRegions = countries.filter((item) => {
-        return item.region === findedRegions;
-      });
-
-      console.log(filteredRegions);
-
-      console.log("you choiese " + findedRegions);
-
-      setResult(filteredRegions);
-    }
-  };
-
-  const sortHandler = (items) => {
-    items.sort(function (a, b) {
-      const nameA = a.name.common.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.common.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
+    // if (regionName !== "") {
+    const findedRegions = regions.find((item) => {
+      return item === regionName;
     });
+
+    const filteredRegions = countries.filter((item) => {
+      return item.region === findedRegions;
+    });
+    setResult(filteredRegions);
+
+    // console.log(filteredRegions);
+
+    // console.log("you choiese " + findedRegions);
+
+    // }
   };
 
   useEffect(() => {
@@ -72,7 +57,7 @@ function Main() {
       .then((response) => response)
       .then((res) => {
         const datas = res.data;
-        sortHandler(datas);
+        SortHandler(datas);
 
         console.log(datas);
         // console.log(sortByName);
@@ -80,22 +65,20 @@ function Main() {
         setCountries(datas);
         setResult(datas);
 
-        console.log("useEFfect ", result);
-        console.log("useEFfect ", countries);
+        // console.log("useEFfect ", result);
+        // console.log("useEFfect ", countries);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
+
   return (
     <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative ">
-      <div className="features  flex  lg:justify-between flex-wrap lg:flex-nowrap">
-        <Search searchCountry={searchCountry} searchHandler={searchHandler} />
-        <Filter regionName={regionName} setRegionName={setRegionName} clickHandler={regionHandler} />
-        {/* <Filter clickHandler={regionHandler} /> */}
-      </div>
-      <div className="cards mt-10 grid grid-rows-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(4,_minmax(264px,_1fr))] gap-5 lg:gap-8 xl:gap-10 items-center ">
+      <Features searchCountry={searchCountry} searchHandler={searchHandler} clickHandler={regionHandler} />
+      {/* <AllCountries loading={loading} result={result} /> */}
+      <div className="cards mt-10 grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(4,_minmax(264px,_1fr))] gap-5 lg:gap-8 xl:gap-10 items-center ">
         {loading ? (
           <div classsName="bg-slate-300 absolute inset-0">
             <h1 className="text-3xl font-bold">Loading...</h1>
@@ -104,7 +87,7 @@ function Main() {
           result &&
           result.map((country, i) => {
             return (
-             <Link key={i + 1} to={country.name.common.toLowerCase()}>
+              <Link key={i + 1} to={`/country/${country.name.common.toLowerCase()}`}>
                 <div className="card bg-white shadow-md rounded-lg ">
                   <div className="image-container overflow-hidden rounded-t-lg  h-[166px] ">
                     <img src={country.flags.png} alt={country.name.common} className=" w-full object-cover lg:min-w-[264px] h-full" />
@@ -128,7 +111,7 @@ function Main() {
               </Link>
             );
           })
-
+        )}
       </div>
     </main>
   );

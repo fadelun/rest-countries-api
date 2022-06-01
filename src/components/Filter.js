@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import IconArrow from "../images/chevron-down-outline.svg";
 
-export const Filter = ({ regionName, setRegionName, clickHandler }) => {
-  const regions = ["Africa", "America", "Asia", "Europe", "Ocenia"];
+export const Filter = () => {
+  const regions = ["Africa", "Americas", "Asia", "Europe", "Ocenia"];
+  const [continentName, setContinentName] = useState("");
 
-  const getRegion = (item) => {
-    // melemparkan variable regions ke main.js
-    clickHandler(item, regions);
+  const getFilter = (item) => {
+    console.log(item);
   };
 
   return (
     <>
-      <details id="region-list" className="p-4 mt-2 lg:mt-0 lg:p-5 w-2/5 lg:w-1/6 bg-very-light-gray hover:cursor-pointer shadow rounded  relative">
-        <summary className="list-none flex justify-between">
+      <details id="region-list" className=" mt-2 lg:mt-0  w-2/5 lg:w-1/6 bg-very-light-gray hover:cursor-pointer shadow rounded  relative">
+        <summary className="list-none flex justify-between p-4 lg:p-5">
           <span>Filter by Region</span> <img src={IconArrow} alt="go-down-icon" width={18} />
         </summary>
 
@@ -22,9 +22,9 @@ export const Filter = ({ regionName, setRegionName, clickHandler }) => {
             regions.map((item, key) => {
               return (
                 <li key={key + 1} className="mb-4">
-                  <button className="w-full text-left" onClick={() => getRegion(`${item}`)}>
+                  <Link to={`/regions/${item.toLowerCase()}`} className="block w-full text-left" onClick={() => getFilter(item)}>
                     {item}
-                  </button>
+                  </Link>
                 </li>
               );
             })}

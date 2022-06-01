@@ -6,6 +6,8 @@
 # testing
 /coverage
 /src/components/Country02.js
+/src/components/AllCountries.js
+/src/components/Filter.js
 
 # production
 /build
