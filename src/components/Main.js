@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 import FormatNumber from "../utils/FormatNumber";
 import SortHandler from "../utils/SortHandler";
 import { Features } from "./Features";
+
 // import { AllCountries } from "./AllCountries";
 
 function Main() {
+  
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchCountry, setSearchCountry] = useState("");
   const [result, setResult] = useState([]);
   const [regionName, setRegionName] = useState("");
+
+  
+  
+  
 
   // function untuk search
   const searchHandler = (searchCountry) => {
@@ -31,10 +37,8 @@ function Main() {
 
   // function untuk filter
   const regionHandler = (item, regions) => {
-    // setRegionName((prevRegionName) => item);
-    setRegionName(item);
 
-    // if (regionName !== "") {
+    setRegionName(item);
     const findedRegions = regions.find((item) => {
       return item === regionName;
     });
@@ -44,11 +48,7 @@ function Main() {
     });
     setResult(filteredRegions);
 
-    // console.log(filteredRegions);
-
-    // console.log("you choiese " + findedRegions);
-
-    // }
+    
   };
 
   useEffect(() => {
@@ -59,14 +59,10 @@ function Main() {
         const datas = res.data;
         SortHandler(datas);
 
-        console.log(datas);
-        // console.log(sortByName);
-
         setCountries(datas);
         setResult(datas);
 
-        // console.log("useEFfect ", result);
-        // console.log("useEFfect ", countries);
+        
         setLoading(false);
       })
       .catch((err) => {
@@ -75,9 +71,12 @@ function Main() {
   }, []);
 
   return (
-    <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative ">
+    <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative dark:text-white ">
+      {/* <h1 id="message" className="text-6xl font-bold fixed shadow-md">
+        Feature Dark Mode !!
+      </h1> */}
       <Features searchCountry={searchCountry} searchHandler={searchHandler} clickHandler={regionHandler} />
-      {/* <AllCountries loading={loading} result={result} /> */}
+      
       <div className="cards mt-10 grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(4,_minmax(264px,_1fr))] gap-5 lg:gap-8 xl:gap-10 items-center ">
         {loading ? (
           <div classsName="bg-slate-300 absolute inset-0">
