@@ -8,7 +8,7 @@ import Region from "./components/Region";
 
 function App() {
   return (
-    <div className="App bg-very-light-gray dark:bg-[#212E37] ">
+    <div className="App bg-very-light-gray dark:bg-very-dark-blue ">
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />

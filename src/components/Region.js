@@ -90,7 +90,7 @@ function Main() {
           result.map((country, i) => {
             return (
               <Link key={i + 1} to={`/country/${country.name.common.toLowerCase()}`}>
-                <div className="card bg-white shadow-md rounded-lg ">
+                <div className="card bg-white dark:bg-dark-blue dark:text-white shadow-md rounded-lg ">
                   <div className="image-container overflow-hidden rounded-t-lg  h-[166px] ">
                     <img src={country.flags.png} alt={country.name.common} className=" w-full object-cover lg:min-w-[264px] h-full" />
                   </div>
