@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, {  useRef } from "react";
 import IconSearch from "../images/search-outline.svg";
 import { Link } from "react-router-dom";
-import IconArrow from "../images/chevron-down-outline.svg";
+
 
 export const Features = ({ searchCountry, searchHandler, clickHandler, paramsRegions }) => {
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -15,9 +15,7 @@ export const Features = ({ searchCountry, searchHandler, clickHandler, paramsReg
   const getFilter = (item) => {
     clickHandler(item, regions);
   };
-  useEffect(() => {
-    console.log(paramsRegions, "features");
-  });
+  
 
   return (
     <div id="features " className="flex  lg:justify-between flex-wrap lg:flex-nowrap dark:text-white">
@@ -28,14 +26,17 @@ export const Features = ({ searchCountry, searchHandler, clickHandler, paramsReg
 
       <details id="region-list" className=" mt-14 lg:mt-0  w-3/6 lg:w-1/6 bg-very-light-gray dark:bg-dark-blue hover:cursor-pointer shadow rounded  relative">
         <summary className="list-none flex justify-between p-4 lg:p-5">
-          <span>Filter by Region</span> <img src={IconArrow} alt="go-down-icon" className="dark:bg-white" width={18} />
+          <span>Filter by Region</span> 
+          
+          <svg xmlns="http://www.w3.org/2000/svg" width={18} viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/>
+          </svg>
         </summary>
 
         <ul className="absolute top-full inset-x-0 bg-very-light-gray dark:bg-dark-blue hover:cursor-pointer py-4 px-6 mt-2  shadow rounded">
           {regions &&
             regions.map((item, key) => {
               return (
-                <li key={key + 1} className={`mb-4 ${paramsRegions === item.toLowerCase() ? "bg-very-dark-blue" : ""}`}>
+                <li key={key + 1} className={`mb-4 ${paramsRegions === item.toLowerCase() ? "font-bold" : ""}`}>
                   {/* ketika sudah memasuki "filter yang dituju" dan "filter region" tersebut diklik lagi maka akan kembali ke menu utama*/}
                   <Link to={`/regions/${item.toLowerCase()}` === `/regions/${paramsRegions}` ? "/" : `/regions/${item.toLowerCase()}`} className="block w-full text-left" onClick={() => getFilter(item)}>
                     {item}

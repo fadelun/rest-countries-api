@@ -13,7 +13,7 @@ body {
     @apply ;
   } */
   #btn-to-back {
-    @apply flex justify-between px-10 py-2 rounded-md  bg-very-light-gray;
+    @apply flex justify-between items-center px-10 py-2 rounded-md  bg-very-light-gray dark:bg-dark-blue;
     box-shadow: 0 0 4px #0006;
   }
 

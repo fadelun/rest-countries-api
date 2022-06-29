@@ -71,7 +71,7 @@ function Main() {
   }, []);
 
   return (
-    <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative dark:text-white ">
+    <main className=" w-4/5 xl:w-[1400px] min-h-screen pt-24 mx-auto relative  ">
       {/* <h1 id="message" className="text-6xl font-bold fixed shadow-md">
         Feature Dark Mode !!
       </h1> */}

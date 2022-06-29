@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useReducer } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import IconArrowBack from "../images/arrow-back-outline.svg";
+
 import FormatNumber from "../utils/FormatNumber";
 
 const initialState = {
@@ -50,11 +50,13 @@ function Country() {
       });
   }, []);
   return (
-    <div className=" bg-white">
+    <div className=" bg-white dark:bg-very-dark-blue">
       <main className=" w-4/5 mx-auto pt-24 text-base relative min-h-screen">
-        <button id="btn-to-back" onClick={() => navigate(-1)}>
-          <img src={IconArrowBack} alt="go-back-icon" width={18} />
-          <span>back</span>
+        <button id="btn-to-back"onClick={() => navigate(-1)}>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" width={18}  viewBox="0 0 512 512"><title>Arrow Back</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/>
+          </svg>
+          <span className="ml-2">back</span>
         </button>
         {/* {state.loading
         ? console.log("waiting")
@@ -69,7 +71,7 @@ function Country() {
             </div>
           ) : (
             state.post.map(({ name, flags, population, region, subregion, capital, tld, currencies, borders, languages }) => (
-              <div id="country" className="flex justify-between flex-wrap lg:flex-nowrap h-1/4 mb-52">
+              <div id="country" className="flex justify-between flex-wrap lg:flex-nowrap h-1/4">
                 <div className="image-container w-full lg:w-2/5">
                   <img src={flags.png} alt={name.common} className="w-full object-cover h-full" />
                 </div>
@@ -107,7 +109,7 @@ function Country() {
                   <article className="border-countries capitalize  ">
                     <ul className="flex flex-wrap w-full">
                       <p className="font-semibold w-full lg:w-auto mb-4 lg:mb-0">border countries:</p>
-                      {borders ? borders.map((e) => <li className="border-countries-list mr-2 font-normal">{e}</li>) : <li className="font-normal text-xl ">Nothing</li>}
+                      {borders ? borders.map((e) => <li className="border-countries-list mr-2 font-normal dark:bg-dark-blue">{e}</li>) : <li className="font-normal text-xl ">Nothing</li>}
                     </ul>
                   </article>
                 </div>
