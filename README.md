@@ -1,6 +1,8 @@
 # Frontend Mentor - REST Countries API with color theme switcher
 
-![Design preview for the Interactive rating component coding challenge](./screenshot-web.jpg)(./screenshot-web (2).jpg)(./screenshot-web (3).jpg)
+![Design preview for the Interactive rating component coding challenge](./screenshot-web.jpg)
+(./screenshot-web-2.jpg)
+(./screenshot-web-3.jpg)
 
 <div align="center">
   <h3>
